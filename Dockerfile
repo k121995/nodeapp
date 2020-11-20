@@ -1,11 +1,13 @@
-FROM node
+FROM node:12
 
-RUN mkdir ./kiran
+WORKDIR /usr/src/app
 
-COPY ./nodejs-hello-world/ /kiran
+COPY package*.json ./
 
-WORKDIR /kiran
+RUN npm install
 
-CMD node index.js
+COPY . .
 
 EXPOSE 8080
+
+CMD [ "node", "index.js" ]
